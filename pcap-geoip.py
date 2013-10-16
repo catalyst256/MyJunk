@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# by @catalyst256
+
 import pygeoip, sys
 import logging
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
