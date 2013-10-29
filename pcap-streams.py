@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, sys, logging#, subprocess, shlex
+import os, sys, logging, subprocess
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
 
@@ -49,7 +49,8 @@ def tcp_stream(pcap):
 				cmd = 'tshark -r ' + pcap + ' tcp.stream eq ' + y + ' -w ' + dumpfile
 				if dumpfile not in tcp_stream_file:
 					tcp_stream_file.append(dumpfile)
-				os.popen(cmd)
+				subprocess.call(cmd, shell=True, stdout=devnull, stderr=devnull)
+				# os.popen(cmd)
 	except:
 		pass
 
@@ -90,7 +91,8 @@ def udp_stream(pcap):
 		cmd = 'tshark -r ' + pcap + ' -R "(ip.addr eq ' + s_ip + ' and ip.addr eq ' + d_ip + ') and (udp.port eq ' + str(s_port) + ' and udp.port eq ' + str(d_port) + ')" -w ' + dumpfile
 		if dumpfile not in udp_stream_file:
 			udp_stream_file.append(dumpfile)
-			os.popen(cmd)
+		subprocess.call(cmd, shell=True, stdout=devnull, stderr=devnull)
+			# os.popen(cmd)
 	print YELLOW + '[!] There are ' + str(len(udp_stream_file)) + ' UDP streams saved in: ' + folder + END
 
 
