@@ -35,8 +35,6 @@ def find_heartbleed(pkts):
             elif length == '4000':
               hb_type = RED + 'Heartbleed Response: ' + END
               payload = ''.join(x[10:])
-            else:
-              pass
             print hb_type + 'src: ' + p[IP].src + ' dst: ' + p[IP].dst
           else:
             pass
