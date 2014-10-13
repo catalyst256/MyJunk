@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from bs4 import BeautifulSoup
 import requests
 import re
 import sys
@@ -33,27 +34,7 @@ r = requests.get(query)
 if r.status_code != 200:
 	print RED + 'Whoops didnt get a response...' + END
 else:
-	# print GREEN + 'HTTP Status Code is: ' + str(r.status_code) + END
-	t = r.text
-	for s in re.finditer(name_search,t):
-		name = s.group(1)
-		print name
-		rec = name
-		if rec not in name_res:
-			name_res.append(rec)
-	for s in re.finditer(phone_search,t):
-		phone = s.group(1)
-		rec = phone
-		print phone
-		if rec not in phone_res:
-			phone_res.append(rec)
-	for s in re.finditer(address_search,t):
-		address = s.group(1)
-		print address
-		rec = address
-		if rec not in addr_res:
-			addr_res.append(rec)
-
-p = zip(name_res, phone_res, addr_res)
-for x in p:
-	print GREEN + 'Name: ' + END + x[0] + GREEN + ' Phone: ' + END + str(x[1]) + GREEN + ' Address: ' + END + x[2]
+	data = r.text
+	soup = BeautifulSoup(data)
+	for link in soup.find_all('div',class_="recordTitle"):
+		print link
