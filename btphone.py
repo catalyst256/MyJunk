@@ -16,7 +16,7 @@ def lookup_name(name, location):
     parsed_html = BeautifulSoup(html)
     x = parsed_html.body.findAll('div', attrs={'class':'recordBody'})
     if len(x) == 0:
-      return 'Nothing found'
+      pass
     else:
       for s in x:
         details.append(s.text.replace('Tel: (', ',').replace(')', '').replace('-Text Number', ',').replace('-Map', '').split(','))
