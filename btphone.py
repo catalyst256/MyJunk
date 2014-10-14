@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# Search UK BT Phonebook for residential numbers based on surname and location
+# by @catalyst256
+
 import requests
 import re
 import sys

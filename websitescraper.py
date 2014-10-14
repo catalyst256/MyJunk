@@ -10,6 +10,7 @@ def scrape_website(url):
   try:
     m = hashlib.md5(url).hexdigest()
     br = webdriver.PhantomJS()
+    br.set_window_size(1024, 768)
     br.get(url)
     filename = m + '.png'
     br.save_screenshot(filename)
