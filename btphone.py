@@ -4,7 +4,6 @@
 # by @catalyst256
 
 import requests
-import re
 import sys
 from BeautifulSoup import BeautifulSoup
 
