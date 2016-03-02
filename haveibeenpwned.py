@@ -6,6 +6,7 @@ import json
 
 email = sys.argv[1]
 
+
 def check_email(email):
   try:
     url = 'https://haveibeenpwned.com/api/v2/breachedaccount/'
@@ -16,12 +17,14 @@ def check_email(email):
       return x
     if r.status_code == 200:
       j = r.json()
-      x = json.dumps(j, indent=2, separators=(',', ': '), ensure_ascii=False, encoding="utf-8")
+      x = json.dumps(j, indent=2, separators=(
+          ',', ': '), ensure_ascii=False, encoding="utf-8")
       return x
     else:
       pass
   except Exception as e:
     return str(e)
+
 
 def check_pastebin(email):
   try:
@@ -33,7 +36,8 @@ def check_pastebin(email):
       return x
     if r.status_code == 200:
       j = r.json()
-      x = json.dumps(j, indent=2, separators=(',', ': '), ensure_ascii=False, encoding="utf-8")
+      x = json.dumps(j, indent=2, separators=(
+          ',', ': '), ensure_ascii=False, encoding="utf-8")
       return x
     else:
       pass
