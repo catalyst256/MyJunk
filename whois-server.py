@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-import os
-import json
+import json, subprocess
 from flask import Flask, request, jsonify, make_response
 
 
@@ -9,8 +8,7 @@ app = Flask(__name__)
 
 
 def queryDomain(domain):
-    cmd = 'pwhois --json %s' % domain
-    a = os.popen(cmd).read()
+    a = subprocess.run(["/bin/pwhois","--json","%s"%domain],capture_output=True).stdout
     j = json.loads(a)
     return j
 
